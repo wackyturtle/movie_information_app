@@ -7,6 +7,6 @@ void main() {
   test('repo test', () async {
     //
     final result = await impl.fetchNowPlayingMovies();
-    expect(result![0].id, 755898);
+    expect(result[0].id, 755898);
   });
 }

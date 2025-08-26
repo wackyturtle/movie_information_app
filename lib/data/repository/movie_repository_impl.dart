@@ -1,5 +1,5 @@
 import 'package:movie_information_app/data/data_source/movie_data_source.dart';
-import 'package:movie_information_app/data/dto/movie_response_dto.dart';
+import 'package:movie_information_app/domain/entity/movie_detail.dart';
 import 'package:movie_information_app/domain/entity/movie_poster.dart';
 import 'package:movie_information_app/domain/repository/movie_repository.dart';
 
@@ -8,28 +8,40 @@ class MovieRepositoryImpl implements MovieRepository {
   final MovieDataSource _movieDataSource;
 
   @override
-  Future<List<Movie>?> fetchNowPlayingMovies() async {
+  Future<List<MoviePoster>> fetchNowPlayingMovies() async {
     final result = await _movieDataSource.fetchNowPlayingMovies();
-    result!.results.map((e) {
-      MoviePoster(id: e.id, posterPath: e.posterPath);
+    return result!.results.map((e) {
+      return MoviePoster(id: e.id, posterPath: e.posterPath);
     }).toList();
   }
 
   @override
-  Future<List<Movie>?> fetchPopularMovies() {
-    // TODO: implement fetchPopularMovies
-    throw UnimplementedError();
+  Future<List<MoviePoster>?> fetchPopularMovies() async {
+    final result = await _movieDataSource.fetchPopularMovies();
+    return result!.results.map((e) {
+      return MoviePoster(id: e.id, posterPath: e.posterPath);
+    }).toList();
   }
 
   @override
-  Future<List<Movie>?> fetchTopRatedMovies() {
-    // TODO: implement fetchTopRatedMovies
-    throw UnimplementedError();
+  Future<List<MoviePoster>?> fetchTopRatedMovies() async {
+    final result = await _movieDataSource.fetchTopRatedMovies();
+    return result!.results.map((e) {
+      return MoviePoster(id: e.id, posterPath: e.posterPath);
+    }).toList();
   }
 
   @override
-  Future<List<Movie>?> fetchUpcomingMovies() {
-    // TODO: implement fetchUpcomingMovies
+  Future<List<MoviePoster>?> fetchUpcomingMovies() async {
+    final result = await _movieDataSource.fetchUpcomingMovies();
+    return result!.results.map((e) {
+      return MoviePoster(id: e.id, posterPath: e.posterPath);
+    }).toList();
+  }
+
+  @override
+  Future<MovieDetail?> fetchMovieDetail(int id) {
+    // TODO: implement fetchMovieDetail
     throw UnimplementedError();
   }
 }
