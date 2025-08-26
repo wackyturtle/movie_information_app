@@ -10,7 +10,7 @@ import 'package:movie_information_app/domain/repository/movie_repository.dart';
 import 'package:movie_information_app/domain/usecase/fetch_movies_usecase.dart';
 
 final _movieDataSourceProvider = Provider<MovieDataSource>((ref) {
-  return MovieDataSourceInpl();
+  return MovieDataSourceImpl();
 });
 
 final _movieRepositoryProvider = Provider<MovieRepository>((ref) {

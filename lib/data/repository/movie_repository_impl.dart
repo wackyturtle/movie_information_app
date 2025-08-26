@@ -40,8 +40,27 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<MovieDetail?> fetchMovieDetail(int id) {
-    // TODO: implement fetchMovieDetail
-    throw UnimplementedError();
+  Future<MovieDetail?> fetchMovieDetail(int id) async {
+    final result = await _movieDataSource.fetchMovieDetail(id);
+    if (result == null) {
+      return null;
+    }
+    return MovieDetail(
+      budget: result.budget,
+      genres: result.genres.map(((e) => e.name)).toList(),
+      id: id,
+      productionCompanyLogos: result.productionCompanies
+          .map((e) => e.logoPath)
+          .toList(),
+      overview: result.overview,
+      popularity: result.popularity,
+      releaseDate: result.releaseDate,
+      revenue: result.revenue,
+      runtime: result.runtime,
+      tagline: result.tagline,
+      title: result.title,
+      voteAverage: result.voteAverage,
+      voteCount: result.voteCount,
+    );
   }
 }

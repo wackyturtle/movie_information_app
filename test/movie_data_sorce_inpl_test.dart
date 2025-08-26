@@ -3,7 +3,7 @@ import 'package:movie_information_app/data/data_source/movie_data_source_inpl.da
 import 'package:movie_information_app/data/dto/movie_response_dto.dart';
 
 void main() {
-  final inpl = MovieDataSourceInpl();
+  final inpl = MovieDataSourceImpl();
 
   test('NowPlaying test', () async {
     MovieResponseDto? response = await inpl.fetchNowPlayingMovies();

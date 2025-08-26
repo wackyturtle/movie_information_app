@@ -5,7 +5,7 @@ import 'package:movie_information_app/data/repository/movie_repository_impl.dart
 import 'package:movie_information_app/domain/usecase/fetch_movies_usecase.dart';
 
 void main() {
-  MovieDataSource data = MovieDataSourceInpl();
+  MovieDataSource data = MovieDataSourceImpl();
   MovieRepositoryImpl repo = MovieRepositoryImpl(data);
   FetchMoviesUsecase usecase = FetchMoviesUsecase(repo);
   test('usecase test', () async {

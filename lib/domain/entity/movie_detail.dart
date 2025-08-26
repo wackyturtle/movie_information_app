@@ -18,7 +18,7 @@ class MovieDetail {
   final double popularity;
 
   /// 영화의 개봉일 (예: 2023-05-01)
-  final DateTime releaseDate;
+  final String releaseDate;
 
   /// 영화의 총 수익 (revenue)
   final int revenue;

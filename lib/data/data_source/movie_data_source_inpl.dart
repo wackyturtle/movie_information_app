@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:movie_information_app/data/data_source/movie_data_source.dart';
+import 'package:movie_information_app/data/dto/movie_detail_dto.dart';
 import 'package:movie_information_app/data/dto/movie_response_dto.dart';
 
-class MovieDataSourceInpl implements MovieDataSource {
+class MovieDataSourceImpl implements MovieDataSource {
   final Dio _client = Dio(BaseOptions(validateStatus: (status) => true));
 
   @override
@@ -69,6 +70,23 @@ class MovieDataSourceInpl implements MovieDataSource {
     );
     if (upcomingMovies.statusCode == 200) {
       return MovieResponseDto.fromJson(upcomingMovies.data);
+    }
+    return null;
+  }
+
+  @override
+  Future<MovieDetailDto?> fetchMovieDetail(int id) async {
+    final movieDetail = await _client.get(
+      'https://api.themoviedb.org/3/movie/755898?key=3e7fea11b366c1fe0f7de2eecde35602',
+      options: Options(
+        headers: {
+          'Authorization':
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZTdmZWExMWIzNjZjMWZlMGY3ZGUyZWVjZGUzNTYwMiIsIm5iZiI6MTc1NjExMDQ0MS45NTcsInN1YiI6IjY4YWMxZTY5MjI3YTJjMzg2YThkMjQ1ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K3PcviaiMQqettiGWKNZ-w6_lLbilTGN73qXu2MxOyo',
+        },
+      ),
+    );
+    if (movieDetail.statusCode == 200) {
+      return MovieDetailDto.fromJson(movieDetail.data);
     }
     return null;
   }
