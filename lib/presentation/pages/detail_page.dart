@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_information_app/presentation/pages/detail_page_view_model.dart';
 
 class DetailPage extends ConsumerWidget {
-  int id;
-  String path;
-  String hero;
-  DetailPage({
+  final int id;
+  final String path;
+  final String hero;
+  const DetailPage({
     super.key,
     required this.id,
     required this.path,
