@@ -35,15 +35,25 @@ TMDB API를 활용해 최신/인기/평점 높은 영화들을 탐색하고, 포
 
 ---
 
-## 🖼️ 스크린샷 (Screenshots)
-> 프로젝트에 `docs/screens` 폴더를 만든 후 아래와 같이 이미지를 추가해 주세요.
+## 🖼️ 예시화면
 
-```
-![Home - Popular](docs/screens/home_1.png)
-![Home - Lists](docs/screens/home_2.png)
-![Detail - Header](docs/screens/detail_1.png)
-![Detail - Info](docs/screens/detail_2.png)
-```
+<p align="center">
+  <img src="assets/images/1.png" width="260" alt="스크린샷 1" />
+  <img src="assets/images/2.png" width="260" alt="스크린샷 2" />
+  <img src="assets/images/3.png" width="260" alt="스크린샷 3" />
+</p>
+<p align="center">
+  <img src="assets/images/4.png" width="260" alt="스크린샷 4" />
+  <img src="assets/images/5.png" width="260" alt="스크린샷 5" />
+</p>
+
+- 그리고 async/await을 잘 못쓴 부분이 있는건지, 아니면 뭔가 추가적인 처리를 해줬어야하는건지는 잘 모르겠지만
+- 처음 앱을 켜서 API를 받아오는데 걸리는 시간, 포스터를 터치했을때 API를 불러오는 시간 동안 데이터가 없어서
+- 이런 빨간 화면이 잠시 들어오는 문제를 발견했습니다.
+
+<img src="assets/images/6.png" width="260" alt="스크린샷 6" />
+
+- 한번 API를 받아오고 나면 다시 동일 포스터를 터치했을땐 문제없이 Hero 위젯이 작동하는 모습을 보실 수 있습니다.
 
 ---
 
