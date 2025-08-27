@@ -77,7 +77,7 @@ class MovieDataSourceImpl implements MovieDataSource {
   @override
   Future<MovieDetailDto?> fetchMovieDetail(int id) async {
     final movieDetail = await _client.get(
-      'https://api.themoviedb.org/3/movie/755898?key=3e7fea11b366c1fe0f7de2eecde35602',
+      'https://api.themoviedb.org/3/movie/$id?key=3e7fea11b366c1fe0f7de2eecde35602',
       options: Options(
         headers: {
           'Authorization':
@@ -85,9 +85,7 @@ class MovieDataSourceImpl implements MovieDataSource {
         },
       ),
     );
-    if (movieDetail.statusCode == 200) {
-      return MovieDetailDto.fromJson(movieDetail.data);
-    }
-    return null;
+    print(movieDetail.statusCode);
+    return MovieDetailDto.fromJson(movieDetail.data);
   }
 }

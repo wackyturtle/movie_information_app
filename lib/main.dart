@@ -12,8 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DetailPage(id: 755898, path: "/yvirUYrva23IudARHn3mMGVxWqM.jpg"),
-    );
+    return MaterialApp(theme: ThemeData.dark(), home: HomePage());
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_information_app/data/data_source/movie_data_source_inpl.dart';
+import 'package:movie_information_app/data/dto/movie_detail_dto.dart';
 import 'package:movie_information_app/data/dto/movie_response_dto.dart';
 
 void main() {
@@ -20,5 +21,10 @@ void main() {
   test('Upcoming test', () async {
     MovieResponseDto? response = await inpl.fetchUpcomingMovies();
     expect(response!.page, 1);
+  });
+
+  test('test', () async {
+    MovieDetailDto? response = await inpl.fetchMovieDetail(755898);
+    expect(response!.adult, false);
   });
 }

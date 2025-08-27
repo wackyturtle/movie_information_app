@@ -1,88 +1,14 @@
-// {
-//   "adult": false,
-//   "backdrop_path": "/iZLqwEwUViJdSkGVjePGhxYzbDb.jpg",
-//   "belongs_to_collection": null,
-//   "budget": 0,
-//   "genres": [
-//     {
-//       "id": 878,
-//       "name": "Science Fiction"
-//     },
-//     {
-//       "id": 53,
-//       "name": "Thriller"
-//     }
-//   ],
-//   "homepage": "https://www.amazon.com/gp/video/detail/B0DMF7MXKT",
-//   "id": 755898,
-//   "imdb_id": "tt13186306",
-//   "origin_country": [
-//     "US"
-//   ],
-//   "original_language": "en",
-//   "original_title": "War of the Worlds",
-//   "overview": "Will Radford is a top analyst for Homeland Security who tracks potential threats through a mass surveillance program, until one day an attack by an unknown entity leads him to question whether the government is hiding something from him... and from the rest of the world.",
-//   "popularity": 1106.8877,
-//   "poster_path": "/yvirUYrva23IudARHn3mMGVxWqM.jpg",
-//   "production_companies": [
-//     {
-//       "id": 33,
-//       "logo_path": "/8lvHyhjr8oUKOOy2dKXoALWKdp0.png",
-//       "name": "Universal Pictures",
-//       "origin_country": "US"
-//     },
-//     {
-//       "id": 109501,
-//       "logo_path": "/4dtmZKPLHzIALpGbdeSNX6Rw1p3.png",
-//       "name": "Bazelevs",
-//       "origin_country": "US"
-//     },
-//     {
-//       "id": 59827,
-//       "logo_path": null,
-//       "name": "Patrick Aiello Productions",
-//       "origin_country": "US"
-//     }
-//   ],
-//   "production_countries": [
-//     {
-//       "iso_3166_1": "US",
-//       "name": "United States of America"
-//     }
-//   ],
-//   "release_date": "2025-07-29",
-//   "revenue": 0,
-//   "runtime": 91,
-//   "spoken_languages": [
-//     {
-//       "english_name": "English",
-//       "iso_639_1": "en",
-//       "name": "English"
-//     }
-//   ],
-//   "status": "Released",
-//   "tagline": "Your data is deadly.",
-//   "title": "War of the Worlds",
-//   "video": false,
-//   "vote_average": 4.248,
-//   "vote_count": 408
-// }
-
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
 import 'dart:convert';
 
-MovieDetailDto welcomeFromJson(String str) =>
+MovieDetailDto movieDetailDtoFromJson(String str) =>
     MovieDetailDto.fromJson(json.decode(str));
 
-String welcomeToJson(MovieDetailDto data) => json.encode(data.toJson());
+String movieDetailDtoToJson(MovieDetailDto data) => json.encode(data.toJson());
 
 class MovieDetailDto {
   bool adult;
   String backdropPath;
-  dynamic belongsToCollection;
+  BelongsToCollection? belongsToCollection;
   int budget;
   List<Genre> genres;
   String homepage;
@@ -139,7 +65,9 @@ class MovieDetailDto {
   factory MovieDetailDto.fromJson(Map<String, dynamic> json) => MovieDetailDto(
     adult: json["adult"],
     backdropPath: json["backdrop_path"],
-    belongsToCollection: json["belongs_to_collection"],
+    belongsToCollection: json["belongs_to_collection"] == null
+        ? null
+        : BelongsToCollection.fromJson(json["belongs_to_collection"]),
     budget: json["budget"],
     genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
     homepage: json["homepage"],
@@ -171,10 +99,12 @@ class MovieDetailDto {
     voteCount: json["vote_count"],
   );
 
+  get results => null;
+
   Map<String, dynamic> toJson() => {
     "adult": adult,
     "backdrop_path": backdropPath,
-    "belongs_to_collection": belongsToCollection,
+    "belongs_to_collection": belongsToCollection?.toJson(),
     "budget": budget,
     "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
     "homepage": homepage,
@@ -207,6 +137,35 @@ class MovieDetailDto {
   };
 }
 
+class BelongsToCollection {
+  int id;
+  String name;
+  String posterPath;
+  String backdropPath;
+
+  BelongsToCollection({
+    required this.id,
+    required this.name,
+    required this.posterPath,
+    required this.backdropPath,
+  });
+
+  factory BelongsToCollection.fromJson(Map<String, dynamic> json) =>
+      BelongsToCollection(
+        id: json["id"],
+        name: json["name"],
+        posterPath: json["poster_path"],
+        backdropPath: json["backdrop_path"],
+      );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "poster_path": posterPath,
+    "backdrop_path": backdropPath,
+  };
+}
+
 class Genre {
   int id;
   String name;
@@ -221,7 +180,7 @@ class Genre {
 
 class ProductionCompany {
   int id;
-  String logoPath;
+  String? logoPath;
   String name;
   String originCountry;
 

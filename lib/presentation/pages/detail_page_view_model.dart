@@ -7,7 +7,7 @@ class DetailState {
   DetailState(this.movieDetail);
 }
 
-class DetailPageViewModel extends AutoDisposeFamilyNotifier<DetailState, int> {
+class DetailPageViewModel extends FamilyNotifier<DetailState, int> {
   @override
   DetailState build(int arg) {
     fetchMovieDetail(arg);
@@ -22,8 +22,6 @@ class DetailPageViewModel extends AutoDisposeFamilyNotifier<DetailState, int> {
 }
 
 final detailPageViewModelProvider =
-    AutoDisposeNotifierProvider.family<DetailPageViewModel, DetailState, int>(
-      () {
-        return DetailPageViewModel();
-      },
-    );
+    NotifierProvider.family<DetailPageViewModel, DetailState, int>(() {
+      return DetailPageViewModel();
+    });
