@@ -123,7 +123,7 @@ class DetailPage extends ConsumerWidget {
                         width: 150,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: Color(0xFF1E1E1E),
+                          color: Colors.white.withAlpha(230),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(color: Colors.white12),
                         ),
